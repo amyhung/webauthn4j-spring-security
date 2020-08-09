@@ -520,6 +520,9 @@ Initially, the specification was developed as "FIDO 2.0: Web API for accessing F
 <li>
 <p>Microsoft Edge bundled with Windows 10 October 2018 Update or later</p>
 </li>
+<li>
+<p>Safari 14 or later</p>
+</li>
 </ul>
 </div>
 </li>
@@ -531,14 +534,6 @@ Initially, the specification was developed as "FIDO 2.0: Web API for accessing F
 <p>Web Authentication API is only available in SecureContext, which means only HTTPS connection is permitted while a user accessing web sites.
 Browsers rejects Web Authentication API call if the web site is served through HTTP connection except <code>localhost</code>.
 For more details about SecureContext, please see <a href="https://developer.mozilla.org/ja/docs/Web/Security/Secure_Contexts">MDN</a>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="browsers"><a class="anchor" href="#browsers"></a>Browsers</h5>
-<div class="paragraph">
-<p>As of Jul. 2018, Google Chrome Desktop edition 67 or later and Mozilla Firefox Desktop edition 60 or later supports Web Authentication.
-Since these browsers only supports FIDO-U2F tokens, user-verifying authenticators like fingerprint reader is not supported, they can&#8217;t be used for password-less authentication.
-Meanwhile Microsoft Edge only supports Web Authentication with Insider Preview Build 17682 or later, it supports not only FIDO-U2F token but also FIDO-CTAP2 roaming authenticators, and Windows Hello as platform authenticators, so Edge supports password-less authentication.</p>
 </div>
 </div>
 </div>
@@ -598,12 +593,15 @@ Please refer <a href="./sample-app">Sample application</a>.
 <div class="sect3">
 <h4 id="maven-dependency"><a class="anchor" href="#maven-dependency"></a>2.1.1. Maven dependency</h4>
 <div class="paragraph">
-<p><span class="line-through">Please add following to pom.xml to introduce WebAuthn4J Spring Security and its dependencies.</span> For now, it is not published to Maven Central.</p>
+<p><span class="line-through">Please add following to pom.xml to introduce WebAuthn4J Spring Security and its dependencies.</span></p>
+</div>
+<div class="paragraph">
+<p>For now, it is not published to Maven Central.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
-	&lt;groupId&gt;com.webauthn4j.springframework.security.registrationExtensions&lt;/groupId&gt;
+	&lt;groupId&gt;com.webauthn4j&lt;/groupId&gt;
 	&lt;artifactId&gt;webauthn4j-spring-security-core&lt;/artifactId&gt;
 	&lt;version&gt;${version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
@@ -642,15 +640,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 <h5 id="integrating-webauthnauthenticationprovider"><a class="anchor" href="#integrating-webauthnauthenticationprovider"></a>Integrating WebAuthnAuthenticationProvider</h5>
 <div class="paragraph">
 <p><code>WebAuthnAuthenticationProvider</code>, which is a <code>AuthenticationProvider</code> for Web Authentication, can also be configured with JavaConfig.
-Please apply <code>WebAuthnAuthenticationProviderConfigurer</code> to a configuration class inherits
-<code>WebSecurityConfigurerAdapter</code>.
-To support multi-factor authentication with password and authenticator, <code>MultiFactorAuthenticationProvider</code> is what you need, and <code>MultiFactorAuthenticationProviderConfigurer</code> configures it for you.</p>
-</div>
-<div class="paragraph">
-<p>There are some points to be kept in mind when using <code>MultiFactorAuthenticationProvider</code>.
-<code>AuthenticationProvider</code> to be delegated cannot to be registered to <code>AuthenticationManager</code>.
-If you delegate authentication to <code>DaoAuthenticationProvider</code>, it is important not to use <code>DaoAuthenticationConfigurer</code> or
-<code>AuthenticationManagerBuilder#userDetailsService</code>.</p>
+Please apply <code>WebAuthnAuthenticationProviderConfigurer</code> to a configuration class inherits <code>WebSecurityConfigurerAdapter</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -658,7 +648,6 @@ If you delegate authentication to <code>DaoAuthenticationProvider</code>, it is 
     @Override
     public void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.apply(new WebAuthnAuthenticationConfigurer&lt;&gt;(userDetailsService));
-        builder.apply(new MultiFactorAuthenticationProviderConfigurer&lt;&gt;(daoAuthenticationProvider));
     }
 }</code></pre>
 </div>
@@ -666,11 +655,10 @@ If you delegate authentication to <code>DaoAuthenticationProvider</code>, it is 
 </div>
 </div>
 <div class="sect3">
-<h4 id="user-directory-integration"><a class="anchor" href="#user-directory-integration"></a>2.1.3. User directory integration</h4>
+<h4 id="persistence-layer-integration"><a class="anchor" href="#persistence-layer-integration"></a>2.1.3. Persistence layer integration</h4>
 <div class="paragraph">
-<p>WebAuthn4J Spring Security looks up a user through the <code>WebAuthnUserDetailsService</code> interface.
-Please set a class implementing <code>WebAuthnUserDetailsService</code> to the <code>WebAuthnAuthenticationProvider</code> and the delegated
-<code>AuthenticationProvider</code>.</p>
+<p>WebAuthn4J Spring Security looks up a user through the <code>WebAuthnAuthenticatorService</code> interface.
+Please set a class implementing <code>WebAuthnAuthenticatorService</code> to the <code>WebAuthnAuthenticationProvider</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -699,7 +687,7 @@ Regarding WebAuthn4J Spring Security, <code>WebAuthnProcessingFilter</code> retr
 <div class="paragraph">
 <p>Web Authentication requests to obtain a challenge from the server prior to authentication.
 When using the FIDO-U2F token as an authentication device, the CredentialIds associated with the user identified by the first authentication factor are also need to be obtained from the server.
-To retrieve these data, WebAuthn4J Spring Security offers <code>AttestationOptionsEndpointFilter</code>.</p>
+To retrieve these data, WebAuthn4J Spring Security offers <code>AttestationOptionsEndpointFilter</code> and <code>AssertionOptionsEndpointFilter</code>.</p>
 </div>
 </div>
 </div>
@@ -712,34 +700,6 @@ To retrieve these data, WebAuthn4J Spring Security offers <code>AttestationOptio
 If you put value on adoption, you may allow password authentication in your web system, or if you give greater importance to security, you may restrict password authentication.</p>
 </div>
 <div class="sect4">
-<h5 id="how-to-restrict-password-authentication"><a class="anchor" href="#how-to-restrict-password-authentication"></a>How to restrict password authentication</h5>
-<div class="paragraph">
-<p>Restriction of single-factor authentication like password can be configured per user basis.
-<code>MFAUserDetails</code> interface, which is a base interface of <code>WebAuthnUserDetails</code> has <code>isSingleFactorAuthenticationAllowed</code>
-method.
-If an implementing class returns <code>true</code> by the method, the user can pass the authentication with only a single-factor like password.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="multifactorauthenticationprovider"><a class="anchor" href="#multifactorauthenticationprovider"></a>MultiFactorAuthenticationProvider</h5>
-<div class="paragraph">
-<p>WebAuthn4J Spring Security utilizes <code>MultiFactorAuthenticationProvider</code> to realize multi-factor authentication.
-<code>MultiFactorAuthenticationProvider</code> is an <code>AuthenticationProvider</code> interface implementation, which delegates authentication decision itself to another <code>AuthenticationProvider</code>.
-If authentication succeeds in the delegated <code>AuthenticationProvider</code>
-and single-factor authentication is not permitted, <code>MultiFactorAuthenticationProvider</code> returns a <code>MultiFactorAuthenticationToken</code>
-instead of the <code>Authentication</code> returned from <code>AuthenticationProvider</code>.</p>
-</div>
-<div class="paragraph">
-<p><code>MultiFactorAuthenticationToken</code> is an <code>Authentication</code> interface implementation represents partial finish of multi-factor authentication.
-It is treated as a principal that has not authenticated like <code>AnonymousAuthenticationToken</code>.</p>
-</div>
-<div class="paragraph">
-<p>To realize multi-factor authentication with password and authenticator, setup a <code>MultiFactorAuthenticationProvider</code>, delegate password authentication to a <code>DaoAuthenticationProvider</code>, and register the <code>MultiFactorAuthenticationProvider</code>
-to the <code>AuthenticationManager</code>.
-The <code>DaoAuthenticationProvider</code>, which is delegated to, must not to be registered to the <code>AuthenticationManager</code> to avoid it processes an <code>Authentication</code> directly, and finishes authentication without second-factor verification.</p>
-</div>
-</div>
-<div class="sect4">
 <h5 id="webauthnauthenticationprovider"><a class="anchor" href="#webauthnauthenticationprovider"></a>WebAuthnAuthenticationProvider</h5>
 <div class="paragraph">
 <p><code>WebAuthnAuthenticationProvider</code> is an <code>AuthenticationProvider</code> implementation to process a
@@ -749,6 +709,23 @@ See <a href="https://webauthn4j.github.io/webauthn4j/ja/">WebAuthn4J reference</
 <code>WebAuthnAuthenticationContextValidator</code>.</p>
 </div>
 </div>
+<div class="sect4">
+<h5 id="how-to-realize-password-authentication"><a class="anchor" href="#how-to-realize-password-authentication"></a>How to realize password authentication</h5>
+<div class="paragraph">
+<p>Restriction of single-factor authentication like password can be configured per user basis.
+<code>MFAUserDetails</code> interface, which is a base interface of <code>WebAuthnUserDetails</code> has <code>isSingleFactorAuthenticationAllowed</code>
+method.
+If an implementing class returns <code>true</code> by the method, the user can pass the authentication with only a single-factor like password.</p>
+</div>
+<div class="paragraph">
+<p>To realize "Multi-factor authentication with password and authenticator" and "Single-factor authentication like password", configure not only <code>WebAuthnAuthenticationProvider</code> but also <code>DaoAuthenticationProvider</code> to process <code>UsernamePasswordAuthenticationToken</code>.
+"Multi-factor authentication with password and authenticator" can be realized by including additional authorization requirement to check a user is authenticated by WebAuthn.</p>
+</div>
+<div class="paragraph">
+<p>Whether it is authenticated by WebAuthn can be checked with the <code>WebAuthnSecurityExpression#isWebAuthnAuthenticated</code> method.
+Register a bean of WebAuthnSecurityExpression instance and call it from JavaConfig. WebAuthn4J Spring Security Sample MPA is a good example for it.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -756,19 +733,18 @@ See <a href="https://webauthn4j.github.io/webauthn4j/ja/">WebAuthn4J reference</
 <div class="sect3">
 <h4 id="distinction-of-a-user-in-the-middle-of-multi-factor-authentication"><a class="anchor" href="#distinction-of-a-user-in-the-middle-of-multi-factor-authentication"></a>2.3.1. Distinction of a user in the middle of multi-factor authentication</h4>
 <div class="paragraph">
-<p>In the case where it is needed to show a different login view like the one asks an authenticator for the user whose first factor is verified but second factor is not provided yet, the distinction can be made by checking the type of
-<code>Authentication</code> instance is a descendant of <code>MultiFactorAuthenticationToken</code> or not.</p>
+<p>In the case where it is needed to show a different login view like one asks an authenticator for the user whose first factor is verified but second factor is not provided yet.
+One way is to switch the view depending on whether the current <code>Authentication</code> instance is anonymous or not.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@RequestMapping(value = "/login", method = RequestMethod.GET)
 public String login() {
-    Authentication authentication =
-            SecurityContextHolder.getContext().getAuthentication();
-    if (authentication instanceof MultiFactorAuthenticationToken) {
-        return ViewNames.VIEW_LOGIN_AUTHENTICATOR_LOGIN;
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authenticationTrustResolver.isAnonymous(authentication)) {
+        return VIEW_LOGIN_LOGIN;
     } else {
-        return ViewNames.VIEW_LOGIN_LOGIN;
+        return VIEW_LOGIN_AUTHENTICATOR_LOGIN;
     }
 }</code></pre>
 </div>
@@ -784,7 +760,7 @@ For example, in the case where the domain of the site is <code>webauthn.example.
 is set to <code>rpId</code>, the scope of the credential is relaxed to <code>example.com</code> and its sub-domain.</p>
 </div>
 <div class="paragraph">
-<p>WebAuthn4J Spring Security supports <code>rpId</code> configuration through the <code>rpId</code> property of <code>ServerPropertyProviderImpl</code>.</p>
+<p>WebAuthn4J Spring Security supports <code>rpId</code> configuration through the <code>rpId</code> property of <code>ServerPropertyProviderImpl</code>, which can be configured through <code>WebAuthnConfigurer</code> in JavaConfig.</p>
 </div>
 </div>
 <div class="sect3">
@@ -820,7 +796,9 @@ WebAuthn4J Spring Security offers <code>KeyStoreResourceTrustAnchorProvider</cod
 == Sample application</p>
 </div>
 <div class="paragraph">
-<p>WebAuthn4J Spring Security contains a sample application demonstrates its major functionality.</p>
+<p>WebAuthn4J Spring Security contains a sample application demonstrates its major functionality.
+Sample SPA is a demo of Single Page Application. Sample MPA is a demo of traditional Multi Page Application.
+Sample SPA is explained below.</p>
 </div>
 </div>
 </div>
@@ -941,7 +919,7 @@ If the authentication succeeds, you will be automatically redirected to the dash
 <div id="footer">
 <div id="footer-text">
 Version 0.7.0-SNAPSHOT<br>
-Last updated 2020-08-08 06:49:30 UTC
+Last updated 2020-08-09 14:19:46 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
