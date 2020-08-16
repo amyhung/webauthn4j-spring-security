@@ -447,18 +447,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#要件">1.3. 要件</a></li>
 <li><a href="#ソースコード">1.4. ソースコード</a></li>
 <li><a href="#ライセンス">1.5. ライセンス</a></li>
-<li><a href="#関連プロジェクト">1.6. 関連プロジェクト</a></li>
-<li><a href="#アプリケーションへの組込">1.7. アプリケーションへの組込</a></li>
-<li><a href="#カスタマイズ">1.8. カスタマイズ</a></li>
-<li><a href="#高度なトピック">1.9. 高度なトピック</a></li>
 </ul>
 </li>
-<li><a href="#spring-boot">2. Spring Boot</a></li>
-<li><a href="#サンプルアプリケーション">3. サンプルアプリケーション</a>
+<li><a href="#クイックスタート">2. クイックスタート</a></li>
+<li><a href="#設定">3. 設定</a>
 <ul class="sectlevel2">
-<li><a href="#サンプルアプリケーションの実行">3.1. サンプルアプリケーションの実行</a></li>
-<li><a href="#ユーザーおよび認証デバイスの登録">3.2. ユーザーおよび認証デバイスの登録</a></li>
-<li><a href="#ユーザー認証">3.3. ユーザー認証</a></li>
+<li><a href="#アプリケーションへの組込">3.1. アプリケーションへの組込</a></li>
+<li><a href="#クライアントサイドとのインタフェース仕様">3.2. クライアントサイドとのインタフェース仕様</a></li>
+<li><a href="#カスタマイズ">3.3. カスタマイズ</a></li>
+<li><a href="#高度なトピック">3.4. 高度なトピック</a></li>
+</ul>
+</li>
+<li><a href="#spring-boot">4. Spring Boot</a></li>
+<li><a href="#サンプルアプリケーション">5. サンプルアプリケーション</a>
+<ul class="sectlevel2">
+<li><a href="#サンプルアプリケーションの実行">5.1. サンプルアプリケーションの実行</a></li>
+<li><a href="#ユーザーおよび認証デバイスの登録">5.2. ユーザーおよび認証デバイスの登録</a></li>
+<li><a href="#ユーザー認証">5.3. ユーザー認証</a></li>
 </ul>
 </li>
 </ul>
@@ -479,6 +484,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Spring Securityで保護されたWebアプリケーションに対して、Web Authentication仕様に基づく認証機能を提供するための Spring Security拡張です。</p>
 </div>
+<div class="sect3">
+<h4 id="webauthn4jとは"><a class="anchor" href="#webauthn4jとは"></a>1.2.1. WebAuthn4Jとは</h4>
+<div class="paragraph">
+<p>WebAuthnのアサーションの検証に関わるコアの処理は <a href="https://github.com/webauthn4j/webauthn4j">WebAuthn4J</a> という別のプロジェクトで開発を進めています。
+WebAuthn4Jは、 全ての構成証明ステートメント（Attestation）をサポートしながら、外部ライブラリへの依存関係は最小限に抑えたポータブルなJavaライブラリです。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="spring-security-webauthnとの関係"><a class="anchor" href="#spring-security-webauthnとの関係"></a>1.2.2. Spring Security WebAuthnとの関係</h4>
+<div class="paragraph">
+<p>Spring Security WebAuthnという姉妹プロジェクトも存在します。Spring Security WebAuthnは、Spring Security本体へのマージを目指してSpring Securityプロジェクトの方針に則って開発されている一方、
+WebAuthn4J Spring Securityは、WebAuthn4Jのプロジェクトとして、WebAuthn4Jライブラリの機能を最大限に、またより早く取り込むことを目的に開発を進めています。</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="要件"><a class="anchor" href="#要件"></a>1.3. 要件</h3>
@@ -490,10 +509,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Java8以降</p>
 </li>
 <li>
-<p>Spring Framework 5.0以降</p>
+<p>Spring Framework 5以降</p>
 </li>
 <li>
-<p>Spring Security 5.0以降</p>
+<p>Spring Security 5以降</p>
 </li>
 </ul>
 </div>
@@ -554,12 +573,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>WebAuthn4J Spring Securityは <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 license</a> ライセンスの オープンソースソフトウェアです。</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="関連プロジェクト"><a class="anchor" href="#関連プロジェクト"></a>1.6. 関連プロジェクト</h3>
-<div class="paragraph">
-<p>WebAuthnのアサーションの検証に関わるコアの処理は <a href="https://github.com/webauthn4j/webauthn4j">WebAuthn4J</a> という別のプロジェクトで開発を進めています。
-== クイックスタート</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="クイックスタート"><a class="anchor" href="#クイックスタート"></a>2. クイックスタート</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>WebAuthn4J Spring Securityは主要機能をデモするサンプルアプリケーションを含みます。</p>
 </div>
@@ -577,14 +595,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>サンプルアプリケーションについては、 <a href="./sample-app">サンプルアプリケーション</a> で詳しく説明していますので参照下さい。
-== 設定</p>
+<p>サンプルアプリケーションについては、 <a href="./sample-app">サンプルアプリケーション</a> で詳しく説明していますので、そちらを参照下さい。</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="設定"><a class="anchor" href="#設定"></a>3. 設定</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="アプリケーションへの組込"><a class="anchor" href="#アプリケーションへの組込"></a>1.7. アプリケーションへの組込</h3>
+<h3 id="アプリケーションへの組込"><a class="anchor" href="#アプリケーションへの組込"></a>3.1. アプリケーションへの組込</h3>
 <div class="sect3">
-<h4 id="maven依存関係"><a class="anchor" href="#maven依存関係"></a>1.7.1. Maven依存関係</h4>
+<h4 id="maven依存関係"><a class="anchor" href="#maven依存関係"></a>3.1.1. Maven依存関係</h4>
 <div class="paragraph">
 <p><span class="line-through">ライブラリとその依存関係を導入するために、以下をpom.xmlファイルに追加してください。</span></p>
 </div>
@@ -602,12 +623,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="java-config"><a class="anchor" href="#java-config"></a>1.7.2. Java Config</h4>
-<div class="sect4">
-<h5 id="webauthnprocessingfilterの組込"><a class="anchor" href="#webauthnprocessingfilterの組込"></a>WebAuthnProcessingFilterの組込</h5>
+<h4 id="java-config"><a class="anchor" href="#java-config"></a>3.1.2. Java Config</h4>
 <div class="paragraph">
-<p>WebAuthnの認証要求を受け付ける <code>WebAuthnProcessingFilter</code> はJavaConfigで設定することが可能です。
-<code>WebSecurityConfigurerAdapter</code> を継承したクラスで <code>configure(HttpSecurity http)</code> メソッドをオーバーライドし、
+<p>WebAuthn4J Spring Securityは、Security SecurityのJava Configで設定することが可能です。
+WebAuthnの認証リクエストを受け付ける <code>WebAuthnProcessingFilter</code> や、 WebAuthn JS APIのリクエストパラメータを返却するAttestation Optionsエンドポイント、Assertion Optionsエンドポイントを構成することが可能です。</p>
+</div>
+<div class="paragraph">
+<p><code>WebSecurityConfigurerAdapter</code> を継承したクラスで <code>configure(HttpSecurity http)</code> メソッドをオーバーライドし、
 <code>WebAuthnLoginConfigurer</code> を適用して下さい。 <code>WebAuthnLoginConfigurer</code> はインスタンスを返却する <code>webAuthnLogin()</code> という staticメソッドを持っていますので、そちらを活用すると良いでしょう。</p>
 </div>
 <div class="listingblock">
@@ -627,19 +649,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }</code></pre>
 </div>
 </div>
-</div>
 <div class="sect4">
 <h5 id="webauthnauthenticationproviderの組込"><a class="anchor" href="#webauthnauthenticationproviderの組込"></a>WebAuthnAuthenticationProviderの組込</h5>
 <div class="paragraph">
 <p>Web Authentication用の <code>AuthenticationProvider</code> である <code>WebAuthnAuthenticationProvider</code> もJavaConfigで設定可能です。
-<code>WebSecurityConfigurerAdapter</code> を継承したクラスで <code>WebAuthnAuthenticationProviderConfigurer</code> を適用して下さい。</p>
+<code>WebSecurityConfigurerAdapter</code> を継承したクラスで <code>configure(AuthenticationManagerBuilder builder)</code> メソッドをオーバーライドし、
+<code>WebAuthnAuthenticationProviderConfigurer</code> を適用して下さい。</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.apply(new WebAuthnAuthenticationConfigurer&lt;&gt;(userDetailsService));
+        builder.apply(new WebAuthnAuthenticationProviderConfigurer&lt;&gt;(authenticatorService, webAuthnManager));
     }
 }</code></pre>
 </div>
@@ -647,60 +669,174 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 </div>
 </div>
 <div class="sect3">
-<h4 id="永続化層との統合"><a class="anchor" href="#永続化層との統合"></a>1.7.3. 永続化層との統合</h4>
+<h4 id="永続化層との統合"><a class="anchor" href="#永続化層との統合"></a>3.1.3. 永続化層との統合</h4>
 <div class="paragraph">
 <p>WebAuthn4J Spring Securityは <code>WebAuthnAuthenticatorService</code> インタフェースを通じて認証デバイスを検索します。
-<code>WebAuthnAuthenticatorService</code> を実装したクラスを <code>WebAuthnAuthenticationProvider</code> にセットして下さい。</p>
+<code>WebAuthnAuthenticatorService</code> を実装したクラスを用意し、 <code>WebAuthnAuthenticationProvider</code> にセットして下さい。
+JavaConfigの場合、<code>WebAuthnAuthenticationProviderConfigurer</code> のコンストラクタを通じてセット出来ます。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="クライアントサイドとのインタフェース仕様"><a class="anchor" href="#クライアントサイドとのインタフェース仕様"></a>3.2. クライアントサイドとのインタフェース仕様</h3>
+<div class="paragraph">
+<p>Web Authentication仕様では、ブラウザのJavaScript APIが規定されており、取得した資格情報をサーバーに対して送信する インタフェースについては規定がありません。</p>
+</div>
+<div class="sect3">
+<h4 id="webauthn認証リクエストの処理"><a class="anchor" href="#webauthn認証リクエストの処理"></a>3.2.1. WebAuthn認証リクエストの処理</h4>
+<div class="paragraph">
+<p>WebAuthn4J Spring Securityでは、認証処理に関しては、ログインURLに対して送信されたリクエストから <code>WebAuthnProcessingFilter</code> がリクエストパラメータとして
+<code>credentialId</code> 、<code>clientData</code> 、 <code>authenticatorData</code> 、<code>signature</code> 、<code>clientExtensionsJSON</code> を取得して認証を行います。
+<code>credentialId</code> 、<code>clientData</code> 、 <code>authenticatorData</code> 、<code>signature</code> はバイナリデータの為、クライアントサイドはBase64URLエンコードして送信して下さい。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="認証デバイス登録時の検証"><a class="anchor" href="#認証デバイス登録時の検証"></a>1.7.4. 認証デバイス登録時の検証</h4>
+<h4 id="認証デバイス登録時の処理"><a class="anchor" href="#認証デバイス登録時の処理"></a>3.2.2. 認証デバイス登録時の処理</h4>
 <div class="paragraph">
-<p>認証デバイス登録操作のハンドリングは、基本的にはアプリケーション側の責務ですが、登録しようとしているCredentialが 認証時に使用できるものであるか検証する為に、WebAuthn4J Spring Securityはコンバータおよびバリデータを提供します。
+<p>認証処理と異なり、登録処理については、通常WebAuthn以外のデータ、例えばユーザーの氏名やメールアドレスなども一緒に登録する必要があることから、
+WebAuthn4J Security Securityとして一律のエンドポイントを設けることは難しく、登録処理用のServlet Filterの提供は行っていません。
+認証デバイス登録操作のハンドリングは、基本的にはアプリケーション側の責務ですが、登録しようとしている資格情報が
+認証時に使用できるものであるか検証する為に、WebAuthn4J Spring Securityはコンバータおよびバリデータを提供します。
 <code>Base64StringToCollectedClientDataConverter</code> はBase64URL文字列を <code>CollectedClientData</code> に変換します。
-<code>Base64StringToAttestationObjectConverter</code> はBase64URL文字列を <code>AttestationObject</code> に変換します。</p>
-</div>
-<div class="paragraph">
-<p><code>WebAuthnRegistrationRequestValidator</code> は、認証デバイスの登録要求の検証を行います。</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="クライアントサイドとのインタフェース仕様"><a class="anchor" href="#クライアントサイドとのインタフェース仕様"></a>1.7.5. クライアントサイドとのインタフェース仕様</h4>
-<div class="paragraph">
-<p>Web Authentication仕様では、ブラウザのJavaScript APIが規定されており、取得したCredentialをサーバーに対して送信する インタフェースについては規定がありません。WebAuthn4J Spring Securityでは、ログインURLに対して送信されたリクエストから
-<code>WebAuthnProcessingFilter</code> がリクエストパラメータとして <code>credentialId</code> 、<code>clientData</code> 、 <code>authenticatorData</code> 、
-<code>signature</code> 、<code>clientExtensionsJSON</code> を取得して認証を行います。 <code>credentialId</code> 、<code>clientData</code> 、 <code>authenticatorData</code> 、
-<code>signature</code> はバイナリデータの為、Base64URLエンコードして送信して下さい。</p>
+<code>Base64StringToAttestationObjectConverter</code> はBase64URL文字列を <code>AttestationObject</code> に変換します。
+<code>WebAuthnRegistrationRequestValidator</code> は、認証デバイスの登録リクエストの検証に用いることが出来ます。</p>
 </div>
 <div class="sect4">
-<h5 id="オプションエンドポイント仕様"><a class="anchor" href="#オプションエンドポイント仕様"></a>オプションエンドポイント仕様</h5>
+<h5 id="オプションエンドポイント"><a class="anchor" href="#オプションエンドポイント"></a>オプションエンドポイント</h5>
 <div class="paragraph">
-<p>Web Authentication仕様では、認証に先立ってサーバーからチャレンジを取得する必要があります。 また、FIDO-U2Fトークンを認証デバイスとして使用する場合は、第一認証要素によって特定されたユーザーに紐づけられた CredentialIdをサーバーから取得する必要があります。
-これらのデータを取得するためのエンドポイントとして、 WebAuthn4J Spring Securityでは <code>AttestationOptionsEndpointFilter</code> と <code>AssertionOptionsEndpointFilter</code> を用意しています。</p>
+<p>Web Authentication仕様では、WebAuthn JS APIで資格情報の作成、認証を行う際にAPIの引数としてサーバーから取得したチャレンジ渡す必要があります。
+また、FIDO-U2Fトークンを認証デバイスとして使用する場合も、第一認証要素によって特定されたユーザーに紐づけられた CredentialIdをサーバーから取得して渡す必要があります。
+これらのWebAuthn JS APIの引数をサーバーから取得するためのエンドポイントとして、 WebAuthn4J Spring Securityでは <code>AttestationOptionsEndpointFilter</code> と <code>AssertionOptionsEndpointFilter</code> を用意しています。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="カスタマイズ"><a class="anchor" href="#カスタマイズ"></a>1.8. カスタマイズ</h3>
+<h3 id="カスタマイズ"><a class="anchor" href="#カスタマイズ"></a>3.3. カスタマイズ</h3>
 <div class="sect3">
-<h4 id="認証方法の選択"><a class="anchor" href="#認証方法の選択"></a>1.8.1. 認証方法の選択</h4>
+<h4 id="webauthnprocessingfilter"><a class="anchor" href="#webauthnprocessingfilter"></a>3.3.1. WebAuthnProcessingFilter</h4>
 <div class="paragraph">
-<p>WebAuthn4J Spring Securityでは、認証方法として「ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証」、 「パスワード＋認証デバイスによる多要素認証」、「パスワード等による単一要素認証」をサポートしています。 パスワード認証をサポートし、ユーザーへの間口を広げることも出来ますし、パスワード認証を制限することで、 セキュリティを高めることも出来ます。</p>
+<p><code>WebAuthnProcessingFilter</code> は、受信したリクエストから <code>credentialId</code> 、<code>clientData</code> 、 <code>authenticatorData</code> 、<code>signature</code> 、<code>clientExtensionsJSON</code>
+といったパラメータを取得して <code>WebAuthnAssertionAuthenticationToken</code> の組立を行います。
+<code>credentialId</code> パラメータが受信したリクエストに存在しない場合は、 <code>username</code> 、 <code>password</code> パラメータを読み取り、
+<code>UsernamePasswordAuthenticationToken</code> を組み立てます。 リクエストパラメータ名を変更したい場合は、
+<code>WebAuthnProcessingFilter</code> のプロパティ、あるいは <code>WebAuthnLoginConfigurer</code> の対応するJava Configメソッドから設定可能です。</p>
 </div>
-<div class="sect4">
-<h5 id="webauthnauthenticationprovider"><a class="anchor" href="#webauthnauthenticationprovider"></a>WebAuthnAuthenticationProvider</h5>
+</div>
+<div class="sect3">
+<h4 id="webauthnauthenticationprovider"><a class="anchor" href="#webauthnauthenticationprovider"></a>3.3.2. WebAuthnAuthenticationProvider</h4>
 <div class="paragraph">
 <p><code>WebAuthnAuthenticationProvider</code> は <code>WebAuthnAssertionAuthenticationToken</code> を処理するための <code>AuthenticationProvider</code>
-インタフェースの実装です。WebAuthnのアサーションの検証には <code>WebAuthnAuthenticationContextValidator</code> を使用します。
-<code>WebAuthnAuthenticationContextValidator</code> については <a href="https://webauthn4j.github.io/webauthn4j/ja/">WebAuthn4Jのリファレンス</a> を参照して下さい。</p>
+インタフェースの実装です。WebAuthnのアサーションの検証には <code>WebAuthnManager</code> を使用します。
+<code>WebAuthnManager</code> については <a href="https://webauthn4j.github.io/webauthn4j/ja/">WebAuthn4Jのリファレンス</a> を参照して下さい。</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="attestation-optionsエンドポイントassertion-optionsエンドポイント"><a class="anchor" href="#attestation-optionsエンドポイントassertion-optionsエンドポイント"></a>3.3.3. Attestation Optionsエンドポイント、Assertion optionsエンドポイント</h4>
+<div class="paragraph">
+<p>WebAuthn4J Spring Securityは、WebAuthn JS APIで資格情報の作成を行う際のパラメータを返却するエンドポイントとして <code>AttestationOptionsEndpointFilter</code> を、
+認証を行う際のパラメータを返却する際のエンドポイントとして <code>AssertionOptionsEndpointFilter</code> を用意しています。
+返却する値の生成は、それぞれ <code>AttestationOptionsProvider</code> インタフェース、 <code>AssertionOptionsProvider</code> インタフェースを通じて委譲されているので、
+これらのカスタム実装を行うことで、返却値を自由にカスタマイズすることが可能です。</p>
+</div>
+<div class="paragraph">
+<p>Java Configからカスタマイズも可能です。 <code>WebAuthnLoginConfigurer</code> の <code>attestationOptionsEndpoint</code> メソッドあるいは <code>assertionOptionsEndpoint</code> からのチェーンを用いて
+カスタマイズすることが出来ます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+       @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+            http.apply(WebAuthnLoginConfigurer.webAuthnLogin())
+                    .attestationOptionsEndpoint()
+                        .attestationOptionsProvider(attestationOptionsProvider)
+                        .processingUrl("/webauthn/attestation/options")
+                        .rp()
+                            .id("example.com")
+                            .icon("dummy")
+                            .name("example")
+                            .and()
+                        .pubKeyCredParams(
+                                new PublicKeyCredentialParameters(PublicKeyCredentialType.PUBLIC_KEY, COSEAlgorithmIdentifier.ES256),
+                                new PublicKeyCredentialParameters(PublicKeyCredentialType.PUBLIC_KEY, COSEAlgorithmIdentifier.RS1)
+                        )
+                        .timeout(10000L)
+                        .authenticatorSelection()
+                            .authenticatorAttachment(AuthenticatorAttachment.CROSS_PLATFORM)
+                            .residentKey(ResidentKeyRequirement.PREFERRED)
+                            .userVerification(UserVerificationRequirement.PREFERRED)
+                            .and()
+                        .attestation(AttestationConveyancePreference.DIRECT)
+                        .extensions()
+                            .credProps(true)
+                            .uvm(true)
+                            .entry("unknown", true)
+                            .extensionProviders((builder, httpServletRequest) -&gt; builder.set("extensionProvider", httpServletRequest.getRequestURI()))
+                        .and()
+                    .assertionOptionsEndpoint()
+                        .assertionOptionsProvider(assertionOptionsProvider)
+                        .processingUrl("/webauthn/assertion/options")
+                        .rpId("example.com")
+                        .timeout(20000L)
+                        .userVerification(UserVerificationRequirement.PREFERRED)
+                        .extensions()
+                            .appid("appid")
+                            .appidExclude("appidExclude")
+                            .uvm(true)
+                            .entry("unknown", true)
+                            .extensionProviders((builder, httpServletRequest) -&gt; {
+                                builder.set("extensionProvider", httpServletRequest.getRequestURI());
+                            })
+                        .and()
+                    .and();
+        }
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="publickeycredentialuserentityの動的な生成"><a class="anchor" href="#publickeycredentialuserentityの動的な生成"></a>PublicKeyCredentialUserEntityの動的な生成</h5>
+<div class="paragraph">
+<p>Attestation Optionsエンドポイントは、返却する <code>PublicKeyCredentialUserEntity</code> をログイン中のユーザーの <code>Authentication</code> に基づいて
+動的に生成することが可能です。動的に生成する為のハンドラとして <code>PublicKeyCredentialUserEntityProvider</code> インタフェースが用意されています。
+<code>AttestationOptionsProviderImpl</code> クラスの <code>setPublicKeyCredentialUserEntityProvider</code> メソッドからセットしてください。</p>
+</div>
+<div class="paragraph">
+<p>Java Configの場合は、以下のようにセット可能です。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+       @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+            http.apply(WebAuthnLoginConfigurer.webAuthnLogin())
+                    .attestationOptionsEndpoint()
+                        .attestationOptionsProvider(attestationOptionsProvider)
+                        .processingUrl("/webauthn/attestation/options")
+                        .user(new MyPublicKeyCredentialUserEntityProvider()) // put your PublicKeyCredentialUserEntityProvider implementation
+        }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>WebAuthn4J Spring SecurityのJava Configは、明示的に指定されていない場合、SpringのApplicationContextから <code>PublicKeyCredentialUserEntityProvider</code> を検索しますので、
+Bean登録することでも <code>PublicKeyCredentialUserEntityProvider</code> のセットが可能です。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="認証方法の選択"><a class="anchor" href="#認証方法の選択"></a>3.3.4. 認証方法の選択</h4>
+<div class="paragraph">
+<p>WebAuthn4J Spring Securityでは、認証方法として「ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証」、 「パスワード＋認証デバイスによる多要素認証」、「パスワード等による単一要素認証」をサポートしています。
+パスワード認証をサポートし、ユーザーへの間口を広げることも出来ますし、パスワード認証を制限することで、 セキュリティを高めることも出来ます。</p>
 </div>
 <div class="sect4">
 <h5 id="パスワード認証の実装"><a class="anchor" href="#パスワード認証の実装"></a>パスワード認証の実装</h5>
 <div class="paragraph">
 <p>「パスワード＋認証デバイスによる多要素認証」、「パスワード等による単一要素認証」をサポートする場合、 <code>WebAuthnAuthenticationProvider</code> に加えて、 <code>DaoAuthenticationProvider</code> を構成し、 <code>UsernamePasswordAuthenticationToken</code> を処理できるようにする必要があります。
-パスワード認証に加えてWebAuthnの認証デバイスによる追加の認証が必要なページは、WebAuthnで認証されているかを認可要件に含めることで実装出来ます。</p>
+「パスワード＋認証デバイスによる多要素認証」が必要なページは、WebAuthnで認証されているかを認可要件に含めることで実装出来ます。</p>
 </div>
 <div class="paragraph">
 <p>WebAuthnで認証されているかは、 <code>WebAuthnSecurityExpression#isWebAuthnAuthenticated</code> メソッドでチェック可能です。WebAuthnSecurityExpressionのインスタンスをBean登録し、JavaConfigから呼び出してください。
@@ -710,12 +846,11 @@ WebAuthn4J Spring Security Sample MPA で実装例を示しているので、参
 </div>
 </div>
 <div class="sect2">
-<h3 id="高度なトピック"><a class="anchor" href="#高度なトピック"></a>1.9. 高度なトピック</h3>
+<h3 id="高度なトピック"><a class="anchor" href="#高度なトピック"></a>3.4. 高度なトピック</h3>
 <div class="sect3">
-<h4 id="多要素認証で第一要素のみ認証完了したユーザーの識別"><a class="anchor" href="#多要素認証で第一要素のみ認証完了したユーザーの識別"></a>1.9.1. 多要素認証で第一要素のみ認証完了したユーザーの識別</h4>
+<h4 id="多要素認証で第一要素のみ認証完了したユーザーの識別"><a class="anchor" href="#多要素認証で第一要素のみ認証完了したユーザーの識別"></a>3.4.1. 多要素認証で第一要素のみ認証完了したユーザーの識別</h4>
 <div class="paragraph">
-<p>多要素認証で第一要素のみ認証完了しているユーザーに対して認証デバイスを要求する画面など、異なるログインページを表示したい場合があります。
-以下のように現在の <code>Authentication</code> インスタンスが未ログインか否かで画面を切り替えるのが一つの方法です。</p>
+<p>ユーザーの認証レベルによって異なるページを表示したい場合、以下のように現在の <code>Authentication</code> インスタンスの型で画面を切り替えるのが一つの方法です。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -732,25 +867,26 @@ public String login() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="credentialの有効範囲rpid設定"><a class="anchor" href="#credentialの有効範囲rpid設定"></a>1.9.2. Credentialの有効範囲（RpId）設定</h4>
+<h4 id="資格情報の有効範囲rpid設定"><a class="anchor" href="#資格情報の有効範囲rpid設定"></a>3.4.2. 資格情報の有効範囲（RpId）設定</h4>
 <div class="paragraph">
-<p>Web Authentication仕様では、Credentialの作成時、即ち認証デバイスの登録時、そのCredentialの有効範囲を制限するための パラメータとして、 <code>rpId</code> を指定します。
+<p>Web Authentication仕様では、資格情報の作成時、即ち認証デバイスの登録時、その資格情報の有効範囲を制限するための パラメータとして、 <code>rpId</code> を指定します。
 <code>rpId</code> には、 <a href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin-effective-domain">effective domain</a> を指定することが出来ます。
-例えば、Credentialの作成を行った ページのドメインが <code>dev.example.com</code> だった場合に、RpIdを <code>dev.example.com</code> と指定すれば、そのCredentialは <code>dev.example.com</code> とそのサブドメインの範囲だけで利用できますが、 <code>rpId</code> を <code>example.com</code> とすることで、 Credentialが利用可能な範囲を <code>example.com</code> およびそのサブドメインに広げることが出来ます。</p>
+例えば、資格情報の作成を行った ページのドメインが <code>dev.example.com</code> だった場合に、RpIdを <code>dev.example.com</code> と指定すれば、その資格情報は <code>dev.example.com</code> とそのサブドメインの範囲だけで利用できますが、 <code>rpId</code> を <code>example.com</code> とすることで、 資格情報が利用可能な範囲を <code>example.com</code> およびそのサブドメインに広げることが出来ます。</p>
 </div>
 <div class="paragraph">
-<p>WebAuthn4J Spring Securityでは、 <code>rpId</code> は <code>ServerPropertyProviderImpl</code> のプロパティとして設定可能で、JavaConfigでは、 <code>WebAuthnConfigurer</code> を通じて設定可能です。</p>
+<p>WebAuthn4J Spring Securityでは、 <code>rpId</code> は <code>ServerPropertyProviderImpl</code> のプロパティとして設定可能で、JavaConfigでは、 <code>WebAuthnConfigurer</code> を通じて設定可能です。
+リクエストに応じて動的に変更したい場合、`RpIdProvider`をセットしてください。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="構成証明ステートメントの検証"><a class="anchor" href="#構成証明ステートメントの検証"></a>1.9.3. 構成証明ステートメントの検証</h4>
+<h4 id="構成証明ステートメントの検証"><a class="anchor" href="#構成証明ステートメントの検証"></a>3.4.3. 構成証明ステートメントの検証</h4>
 <div class="paragraph">
 <p>Web Authentication仕様では、認証デバイスの登録時に要求すれば認証デバイスの構成証明ステートメントを取得することが出来ます。
 Relying Partyは取得した構成証明ステートメントを検証することで、セキュリティ要件に合致しない認証デバイスの受け入れを拒否することが可能です。
 但し、構成証明ステートメントにはユーザーのサイトを跨いだトラッキングに利用できる情報が含まれていることから、無闇に 要求するべきではありません。また、構成証明ステートメントを要求した場合、ブラウザはユーザーに対して追加のダイアログを 表示するため、ユーザビリティが低下することも注意が必要です。認証デバイスの厳密な検証が必要なエンタープライズ用途以外、 通常のB2Cサイトでは、構成証明ステートメントの要求を行うべきではないでしょう。</p>
 </div>
 <div class="paragraph">
-<p>WebAuthn4Jでは、<code>WebAuthnRegistrationContextValidator</code> が認証デバイスの登録要求の検証を行いますが、 取得した構成証明ステートメントの署名と信頼性の検証は、それぞれ <code>AttestationStatementValidator</code> と
+<p>WebAuthn4Jでは、<code>WebAuthnRegistrationContextValidator</code> が認証デバイスの登録リクエストの検証を行いますが、 取得した構成証明ステートメントの署名と信頼性の検証は、それぞれ <code>AttestationStatementValidator</code> と
 <code>CertPathTrustworthinessValidator</code> インタフェースの実装に委譲します。</p>
 </div>
 <div class="paragraph">
@@ -760,7 +896,7 @@ Relying Partyは取得した構成証明ステートメントを検証するこ�
 </div>
 </div>
 <div class="sect3">
-<h4 id="springのresourceを活用したtrustanchorprovider"><a class="anchor" href="#springのresourceを活用したtrustanchorprovider"></a>1.9.4. SpringのResourceを活用したTrustAnchorProvider</h4>
+<h4 id="springのresourceを活用したtrustanchorprovider"><a class="anchor" href="#springのresourceを活用したtrustanchorprovider"></a>3.4.4. SpringのResourceを活用したTrustAnchorProvider</h4>
 <div class="paragraph">
 <p>認証デバイスを登録時に証明書パスから検証する場合、 <code>TrustAnchorCertPathTrustworthinessValidator</code> クラスは
 <code>TrustAnchorProvider</code> インタフェースの実装クラスから取得した <code>TrustAnchor</code> を使用します。WebAuthn4J Spring Securityでは、 SpringのResourceとして読み込んだJava Key Storeファイルを <code>TrustAnchor</code> として使用する <code>TrustAnchorProvider</code> として、
@@ -771,7 +907,7 @@ Relying Partyは取得した構成証明ステートメントを検証するこ�
 </div>
 </div>
 <div class="sect1">
-<h2 id="spring-boot"><a class="anchor" href="#spring-boot"></a>2. Spring Boot</h2>
+<h2 id="spring-boot"><a class="anchor" href="#spring-boot"></a>4. Spring Boot</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>WebAuthn4J Spring Securityに対するSpring Boot Auto-Configurationは将来のバージョンで提供される予定です。</p>
@@ -779,14 +915,14 @@ Relying Partyは取得した構成証明ステートメントを検証するこ�
 </div>
 </div>
 <div class="sect1">
-<h2 id="サンプルアプリケーション"><a class="anchor" href="#サンプルアプリケーション"></a>3. サンプルアプリケーション</h2>
+<h2 id="サンプルアプリケーション"><a class="anchor" href="#サンプルアプリケーション"></a>5. サンプルアプリケーション</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>webauthn4j-spring-securityは主要機能をデモするサンプルアプリケーションを含みます。
 Single Page Applicationのデモである、Sample SPAと、従来型のMulti Page Applicationである、Sample MPAです。以下ではSample SPAについて説明します。</p>
 </div>
 <div class="sect2">
-<h3 id="サンプルアプリケーションの実行"><a class="anchor" href="#サンプルアプリケーションの実行"></a>3.1. サンプルアプリケーションの実行</h3>
+<h3 id="サンプルアプリケーションの実行"><a class="anchor" href="#サンプルアプリケーションの実行"></a>5.1. サンプルアプリケーションの実行</h3>
 <div class="paragraph">
 <p>サンプルアプリケーションは以下のコマンドで実行することが出来ます。</p>
 </div>
@@ -797,7 +933,7 @@ Single Page Applicationのデモである、Sample SPAと、従来型のMulti Pa
 </div>
 </div>
 <div class="sect2">
-<h3 id="ユーザーおよび認証デバイスの登録"><a class="anchor" href="#ユーザーおよび認証デバイスの登録"></a>3.2. ユーザーおよび認証デバイスの登録</h3>
+<h3 id="ユーザーおよび認証デバイスの登録"><a class="anchor" href="#ユーザーおよび認証デバイスの登録"></a>5.2. ユーザーおよび認証デバイスの登録</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/signup.png" alt="サインアップ画面">
@@ -808,7 +944,7 @@ Single Page Applicationのデモである、Sample SPAと、従来型のMulti Pa
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/signup-with-firefox-popup.png" alt="認証デバイス要求ポップアップ">
+<img src="images/signup-with-popup.png" alt="認証デバイス要求ポップアップ">
 </div>
 </div>
 <div class="paragraph">
@@ -816,7 +952,7 @@ Single Page Applicationのデモである、Sample SPAと、従来型のMulti Pa
 </div>
 </div>
 <div class="sect2">
-<h3 id="ユーザー認証"><a class="anchor" href="#ユーザー認証"></a>3.3. ユーザー認証</h3>
+<h3 id="ユーザー認証"><a class="anchor" href="#ユーザー認証"></a>5.3. ユーザー認証</h3>
 <div class="paragraph">
 <p>ログイン画面は、 <code><a href="http://localhost:/8080/angular/login" class="bare">http://localhost:/8080/angular/login</a></code> でアクセスすることが出来ます。 サンプルアプリケーションではユーザー認証について、三つの認証フローをサポートしています。</p>
 </div>
@@ -837,7 +973,7 @@ Single Page Applicationのデモである、Sample SPAと、従来型のMulti Pa
 <p>以下、三つの認証フローについてそれぞれ説明していきます。</p>
 </div>
 <div class="sect3">
-<h4 id="パスワード認証デバイスによる多要素認証"><a class="anchor" href="#パスワード認証デバイスによる多要素認証"></a>3.3.1. パスワード＋認証デバイスによる多要素認証</h4>
+<h4 id="パスワード認証デバイスによる多要素認証"><a class="anchor" href="#パスワード認証デバイスによる多要素認証"></a>5.3.1. パスワード＋認証デバイスによる多要素認証</h4>
 <div class="paragraph">
 <p>ユーザー検証機能が付いていないFIDO-U2Fのトークンのような認証デバイスを登録した場合は、パスワード＋認証デバイスによる 多要素認証が可能です。</p>
 </div>
@@ -859,13 +995,13 @@ Single Page Applicationのデモである、Sample SPAと、従来型のMulti Pa
 </div>
 </div>
 <div class="sect3">
-<h4 id="ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証"><a class="anchor" href="#ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証"></a>3.3.2. ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証</h4>
+<h4 id="ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証"><a class="anchor" href="#ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証"></a>5.3.2. ユーザー検証機能付き認証デバイスによるパスワードレス多要素認証</h4>
 <div class="paragraph">
 <p>ユーザー検証機能が付いている認証デバイスを登録した場合、パスワードレス認証が可能です。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/login-with-edge.png" alt="ログイン画面（パスワードレスログイン）">
+<img src="images/login-with-popup.png" alt="ログイン画面（パスワードレスログイン）">
 </div>
 </div>
 <div class="paragraph">
@@ -873,7 +1009,7 @@ Single Page Applicationのデモである、Sample SPAと、従来型のMulti Pa
 </div>
 </div>
 <div class="sect3">
-<h4 id="パスワード認証"><a class="anchor" href="#パスワード認証"></a>3.3.3. パスワード認証</h4>
+<h4 id="パスワード認証"><a class="anchor" href="#パスワード認証"></a>5.3.3. パスワード認証</h4>
 <div class="paragraph">
 <p>ユーザー登録時に「パスワード認証を許可」にチェックを入れていた場合、 通常のパスワード認証が利用可能です。</p>
 </div>
@@ -893,7 +1029,7 @@ Single Page Applicationのデモである、Sample SPAと、従来型のMulti Pa
 <div id="footer">
 <div id="footer-text">
 Version 0.7.0-SNAPSHOT<br>
-Last updated 2020-08-15 04:30:27 UTC
+Last updated 2020-08-16 04:23:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

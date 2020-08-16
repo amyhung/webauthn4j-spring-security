@@ -443,7 +443,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#requirements">1.3. Requirements</a></li>
 <li><a href="#source-code">1.4. Source code</a></li>
 <li><a href="#license">1.5. License</a></li>
-<li><a href="#related-project">1.6. Related Project</a></li>
 </ul>
 </li>
 </ul>
@@ -467,6 +466,20 @@ Initially, the specification was developed as "FIDO 2.0: Web API for accessing F
 <div class="paragraph">
 <p>WebAuthn4J Spring Security is a Spring Security extension module to provide Web Authentication specification support for your Spring web application.</p>
 </div>
+<div class="sect3">
+<h4 id="webauthn4j"><a class="anchor" href="#webauthn4j"></a>1.2.1. WebAuthn4J</h4>
+<div class="paragraph">
+<p>WebAuthn4J Spring Security uses <a href="https://github.com/webauthn4j/webauthn4j">WebAuthn4J</a> for WebAuthn attestation and assertion verification.
+WebAuthn4J is a portable Java library that supports all the attestation statements, but has minimal dependencies on external libraries.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="spring-security-webauthn"><a class="anchor" href="#spring-security-webauthn"></a>1.2.2. Spring Security WebAuthn</h4>
+<div class="paragraph">
+<p>There is also a sister project called Spring Security WebAuthn. Spring Security WebAuthn is developed according to Spring Security project&#8217;s policy, aiming to be merged into Spring Security upstream.
+WebAuthn4J Spring Security is developed as a WebAuthn4J project with the aim of maximizing the functions of the WebAuthn4J library.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="requirements"><a class="anchor" href="#requirements"></a>1.3. Requirements</h3>
@@ -478,10 +491,10 @@ Initially, the specification was developed as "FIDO 2.0: Web API for accessing F
 <p>Java8 or later</p>
 </li>
 <li>
-<p>Spring Framework 5.0 or later</p>
+<p>Spring Framework 5 or later</p>
 </li>
 <li>
-<p>Spring Security 5.0 or later</p>
+<p>Spring Security 5 or later</p>
 </li>
 </ul>
 </div>
@@ -541,20 +554,13 @@ For more details about SecureContext, please see <a href="https://developer.mozi
 <p>WebAuthn4J Spring Security is an open source software licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 license</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="related-project"><a class="anchor" href="#related-project"></a>1.6. Related Project</h3>
-<div class="paragraph">
-<p><a href="https://github.com/webauthn4j/webauthn4j">WebAuthn4J</a> is a portable Java library for WebAuthn assertion and attestation verification.
-Spring Security is built on the top of it.</p>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.7.0-SNAPSHOT<br>
-Last updated 2020-08-15 04:30:27 UTC
+Last updated 2020-08-16 04:23:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

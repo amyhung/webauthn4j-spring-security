@@ -447,17 +447,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#requirements">1.3. Requirements</a></li>
 <li><a href="#source-code">1.4. Source code</a></li>
 <li><a href="#license">1.5. License</a></li>
-<li><a href="#related-project">1.6. Related Project</a></li>
 </ul>
 </li>
-<li><a href="#quick-start">2. Quick start</a>
+<li><a href="#quick-start">2. Quick start</a></li>
+<li><a href="#configuration">3. Configuration</a>
 <ul class="sectlevel2">
-<li><a href="#applications-integration">2.1. Applications integration</a></li>
-<li><a href="#customization">2.2. Customization</a></li>
-<li><a href="#advanced-topics">2.3. Advanced topics</a></li>
-<li><a href="#sample-application-execution">2.4. Sample application execution</a></li>
-<li><a href="#user-and-authenticator-registration">2.5. User and authenticator registration</a></li>
-<li><a href="#user-authentication">2.6. User authentication</a></li>
+<li><a href="#applications-integration">3.1. Applications integration</a></li>
+<li><a href="#client-interface">3.2. Client interface</a></li>
+<li><a href="#customization">3.3. Customization</a></li>
+<li><a href="#advanced-topics">3.4. Advanced topics</a></li>
+</ul>
+</li>
+<li><a href="#spring-boot">4. Spring Boot</a></li>
+<li><a href="#sample-application">5. Sample application</a>
+<ul class="sectlevel2">
+<li><a href="#sample-application-execution">5.1. Sample application execution</a></li>
+<li><a href="#user-and-authenticator-registration">5.2. User and authenticator registration</a></li>
+<li><a href="#user-authentication">5.3. User authentication</a></li>
 </ul>
 </li>
 </ul>
@@ -481,6 +487,20 @@ Initially, the specification was developed as "FIDO 2.0: Web API for accessing F
 <div class="paragraph">
 <p>WebAuthn4J Spring Security is a Spring Security extension module to provide Web Authentication specification support for your Spring web application.</p>
 </div>
+<div class="sect3">
+<h4 id="webauthn4j"><a class="anchor" href="#webauthn4j"></a>1.2.1. WebAuthn4J</h4>
+<div class="paragraph">
+<p>WebAuthn4J Spring Security uses <a href="https://github.com/webauthn4j/webauthn4j">WebAuthn4J</a> for WebAuthn attestation and assertion verification.
+WebAuthn4J is a portable Java library that supports all the attestation statements, but has minimal dependencies on external libraries.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="spring-security-webauthn"><a class="anchor" href="#spring-security-webauthn"></a>1.2.2. Spring Security WebAuthn</h4>
+<div class="paragraph">
+<p>There is also a sister project called Spring Security WebAuthn. Spring Security WebAuthn is developed according to Spring Security project&#8217;s policy, aiming to be merged into Spring Security upstream.
+WebAuthn4J Spring Security is developed as a WebAuthn4J project with the aim of maximizing the functions of the WebAuthn4J library.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="requirements"><a class="anchor" href="#requirements"></a>1.3. Requirements</h3>
@@ -492,10 +512,10 @@ Initially, the specification was developed as "FIDO 2.0: Web API for accessing F
 <p>Java8 or later</p>
 </li>
 <li>
-<p>Spring Framework 5.0 or later</p>
+<p>Spring Framework 5 or later</p>
 </li>
 <li>
-<p>Spring Security 5.0 or later</p>
+<p>Spring Security 5 or later</p>
 </li>
 </ul>
 </div>
@@ -555,13 +575,6 @@ For more details about SecureContext, please see <a href="https://developer.mozi
 <p>WebAuthn4J Spring Security is an open source software licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 license</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="related-project"><a class="anchor" href="#related-project"></a>1.6. Related Project</h3>
-<div class="paragraph">
-<p><a href="https://github.com/webauthn4j/webauthn4j">WebAuthn4J</a> is a portable Java library for WebAuthn assertion and attestation verification.
-Spring Security is built on the top of it.</p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -585,13 +598,17 @@ Spring Security is built on the top of it.</p>
 </div>
 <div class="paragraph">
 <p>Sample application is documented in a dedicated chapter.
-Please refer <a href="./sample-app">Sample application</a>.
-== Configuration</p>
+Please refer <a href="./sample-app">Sample application</a>.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>3. Configuration</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="applications-integration"><a class="anchor" href="#applications-integration"></a>2.1. Applications integration</h3>
+<h3 id="applications-integration"><a class="anchor" href="#applications-integration"></a>3.1. Applications integration</h3>
 <div class="sect3">
-<h4 id="maven-dependency"><a class="anchor" href="#maven-dependency"></a>2.1.1. Maven dependency</h4>
+<h4 id="maven-dependency"><a class="anchor" href="#maven-dependency"></a>3.1.1. Maven dependency</h4>
 <div class="paragraph">
 <p><span class="line-through">Please add following to pom.xml to introduce WebAuthn4J Spring Security and its dependencies.</span></p>
 </div>
@@ -609,14 +626,16 @@ Please refer <a href="./sample-app">Sample application</a>.
 </div>
 </div>
 <div class="sect3">
-<h4 id="java-config"><a class="anchor" href="#java-config"></a>2.1.2. Java Config</h4>
-<div class="sect4">
-<h5 id="integrating-webauthnprocessingfilter"><a class="anchor" href="#integrating-webauthnprocessingfilter"></a>Integrating WebAuthnProcessingFilter</h5>
+<h4 id="java-config"><a class="anchor" href="#java-config"></a>3.1.2. Java Config</h4>
 <div class="paragraph">
-<p><code>WebAuthnProcessingFilter</code>, which listens WebAuthn authentication requests can be configured with JavaConfig.
-Please define a configuration class, make it inherit <code>WebSecurityConfigurerAdapter</code>, apply <code>WebAuthnLoginConfigurer</code>
+<p>WebAuthn4J Spring Security can be configured through Spring Security style Java Config, which configures
+<code>WebAuthnProcessingFilter</code>, which processes WebAuthn authentication request, attestation options endpoint and assertion options endpoint,
+which return WebAuthn JS API request parameters.</p>
+</div>
+<div class="paragraph">
+<p>Please define a configuration class, make it inherit <code>WebSecurityConfigurerAdapter</code>, apply <code>WebAuthnLoginConfigurer</code>
 in a method overrides <code>configure(HttpSecurity http)</code>.
-<code>WebAuthnLoginConfigurer</code> has a factory method named <code>webAuthnLogin()</code>, which can be utilized.</p>
+<code>WebAuthnLoginConfigurer</code> has a factory method named <code>webAuthnLogin()</code>, which is useful for applying <code>WebAuthnLoginConfigurer</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -627,27 +646,57 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         // WebAuthn Login
-        http.apply(webAuthnLogin())
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("rawPassword");
+        http.apply(WebAuthnLoginConfigurer.webAuthnLogin())
+            .credentialIdParameter("credentialId")
+            .clientDataJSONParameter("clientDataJSON")
+            .authenticatorDataParameter("authenticatorData")
+            .signatureParameter("signature")
+            .clientExtensionsJSONParameter("clientExtensionsJSON")
+            .loginProcessingUrl("/login")
+            .rpId("example.com")
+            .attestationOptionsEndpoint()
+                .attestationOptionsProvider(attestationOptionsProvider)
+                .processingUrl("/webauthn/attestation/options")
+                .rp()
+                    .name("example")
+                    .and()
+                .pubKeyCredParams(
+                        new PublicKeyCredentialParameters(PublicKeyCredentialType.PUBLIC_KEY, COSEAlgorithmIdentifier.ES256),
+                        new PublicKeyCredentialParameters(PublicKeyCredentialType.PUBLIC_KEY, COSEAlgorithmIdentifier.RS1)
+                )
+                .authenticatorSelection()
+                    .authenticatorAttachment(AuthenticatorAttachment.CROSS_PLATFORM)
+                    .residentKey(ResidentKeyRequirement.PREFERRED)
+                    .userVerification(UserVerificationRequirement.PREFERRED)
+                    .and()
+                .attestation(AttestationConveyancePreference.DIRECT)
+                .extensions()
+                    .credProps(true)
+                    .uvm(true)
+                .and()
+            .assertionOptionsEndpoint()
+                .assertionOptionsProvider(assertionOptionsProvider)
+                .processingUrl("/webauthn/assertion/options")
+                .rpId("example.com")
+                .userVerification(UserVerificationRequirement.PREFERRED)
+            .and();
     }
 }</code></pre>
-</div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="integrating-webauthnauthenticationprovider"><a class="anchor" href="#integrating-webauthnauthenticationprovider"></a>Integrating WebAuthnAuthenticationProvider</h5>
 <div class="paragraph">
-<p><code>WebAuthnAuthenticationProvider</code>, which is a <code>AuthenticationProvider</code> for Web Authentication, can also be configured with JavaConfig.
-Please apply <code>WebAuthnAuthenticationProviderConfigurer</code> to a configuration class inherits <code>WebSecurityConfigurerAdapter</code>.</p>
+<p><code>WebAuthnAuthenticationProvider</code>, which is an <code>AuthenticationProvider</code> for WebAuthn, can also be configured with JavaConfig.
+Please override the <code>configure(AuthenticationManagerBuilder builder)</code> method in a configuration class that inherits <code>WebSecurityConfigurerAdapter</code>
+and apply <code>WebAuthnAuthenticationProviderConfigurer</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.apply(new WebAuthnAuthenticationConfigurer&lt;&gt;(userDetailsService));
+        builder.apply(new WebAuthnAuthenticationProviderConfigurer&lt;&gt;(authenticatorService, webAuthnManager));
     }
 }</code></pre>
 </div>
@@ -655,16 +704,34 @@ Please apply <code>WebAuthnAuthenticationProviderConfigurer</code> to a configur
 </div>
 </div>
 <div class="sect3">
-<h4 id="persistence-layer-integration"><a class="anchor" href="#persistence-layer-integration"></a>2.1.3. Persistence layer integration</h4>
+<h4 id="persistence-layer-integration"><a class="anchor" href="#persistence-layer-integration"></a>3.1.3. Persistence layer integration</h4>
 <div class="paragraph">
-<p>WebAuthn4J Spring Security looks up a user through the <code>WebAuthnAuthenticatorService</code> interface.
-Please set a class implementing <code>WebAuthnAuthenticatorService</code> to the <code>WebAuthnAuthenticationProvider</code>.</p>
+<p>WebAuthn4J Spring Security looks up an authenticator through the <code>WebAuthnAuthenticatorService</code> interface.
+Please set a class implementing <code>WebAuthnAuthenticatorService</code> to the <code>WebAuthnAuthenticationProvider</code>.
+Speaking of Java Config, it can be set through a constructor of <code>WebAuthnAuthenticationProviderConfigurer</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client-interface"><a class="anchor" href="#client-interface"></a>3.2. Client interface</h3>
+<div class="paragraph">
+<p>W3C Web Authentication specification defines web browser JavaScript APIs only. It is up to implementation how to send a generated credential.</p>
+</div>
+<div class="sect3">
+<h4 id="webauthn-authentication-request-processing"><a class="anchor" href="#webauthn-authentication-request-processing"></a>3.2.1. WebAuthn authentication request processing</h4>
+<div class="paragraph">
+<p>Regarding WebAuthn4J Spring Security, <code>WebAuthnProcessingFilter</code> retrieves <code>credentialId</code>, <code>clientData</code>, <code>authenticatorData</code>, <code>signature</code>, and <code>clientExtensionsJSON</code> from the request sent to login processing url.
+<code>credentialId</code>, <code>clientData</code>, <code>authenticatorData</code> and <code>signature</code> are binary data, please send them as Base64 strings.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="validation-on-an-authenticator-registration"><a class="anchor" href="#validation-on-an-authenticator-registration"></a>2.1.4. Validation on an authenticator registration</h4>
+<h4 id="webauthn-registration-request-processing"><a class="anchor" href="#webauthn-registration-request-processing"></a>3.2.2. WebAuthn registration request processing</h4>
 <div class="paragraph">
-<p>While it is basically application&#8217;s responsibility to handle an authenticator registration process, WebAuthn4J Spring Security provides converters and validators to examine the credential in question.
+<p>Not like authentication request processing, Servlet filter is not provided for registration request processing
+because in most cases, data other than WebAuthn like user&#8217;s first name, last name, or email address are sent at the same time.</p>
+</div>
+<div class="paragraph">
+<p>While it is basically application&#8217;s responsibility to handle an authenticator registration process, WebAuthn4J Spring Security provides converters and validators to examine the received credential.
 <code>Base64StringToCollectedClientDataConverter</code> converts Base64 string to a <code>CollectedClientData</code>.
 <code>Base64StringToAttestationObjectConverter</code> converts Base64 string to a <code>AttestationObject</code>.</p>
 </div>
@@ -673,50 +740,130 @@ Please set a class implementing <code>WebAuthnAuthenticatorService</code> to the
 </div>
 </div>
 <div class="sect3">
-<h4 id="client-interface-specification"><a class="anchor" href="#client-interface-specification"></a>2.1.5. Client interface specification</h4>
+<h4 id="options-endpoints"><a class="anchor" href="#options-endpoints"></a>3.2.3. Options endpoints</h4>
 <div class="paragraph">
-<p>Web Authentication defines browser JavaScript APIs only.
-It is up to implementation the way to send corrected credential.
-Regarding WebAuthn4J Spring Security, <code>WebAuthnProcessingFilter</code> retrieves <code>credentialId</code>, <code>clientData</code>, <code>authenticatorData</code>,
-<code>signature</code>, <code>clientExtensionsJSON</code> for authentication, and <code>credentialId</code>, <code>clientData</code>, <code>authenticatorData</code> and
-<code>signature</code> is binary data, please send them as Base64 strings.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="options-endpoint-specification"><a class="anchor" href="#options-endpoint-specification"></a>2.1.6. Options endpoint specification</h4>
-<div class="paragraph">
-<p>Web Authentication requests to obtain a challenge from the server prior to authentication.
+<p>Web Authentication needs to obtain a challenge from the server prior to registration and authentication.
 When using the FIDO-U2F token as an authentication device, the CredentialIds associated with the user identified by the first authentication factor are also need to be obtained from the server.
 To retrieve these data, WebAuthn4J Spring Security offers <code>AttestationOptionsEndpointFilter</code> and <code>AssertionOptionsEndpointFilter</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="customization"><a class="anchor" href="#customization"></a>2.2. Customization</h3>
+<h3 id="customization"><a class="anchor" href="#customization"></a>3.3. Customization</h3>
 <div class="sect3">
-<h4 id="selecting-authentication-method"><a class="anchor" href="#selecting-authentication-method"></a>2.2.1. Selecting authentication method</h4>
+<h4 id="webauthnprocessingfilter"><a class="anchor" href="#webauthnprocessingfilter"></a>3.3.1. WebAuthnProcessingFilter</h4>
+<div class="paragraph">
+<p><code>WebAuthnProcessingFilter</code> retrieves <code>credentialId</code>, <code>clientData</code>, <code>authenticatorData</code>, <code>signature</code>, and <code>clientExtensionsJSON</code> from the request and build <code>WebAuthnAssertionAuthenticationToken</code>.
+If <code>credentialId</code> does not exist, it retrieves <code>username</code> and <code>password</code> to build <code>UsernamePasswordAuthenticationToken</code>.
+To change request parameter names, configure properties of <code>WebAuthnProcessingFilter</code> or corresponding Java Config method of <code>WebAuthnLoginConfigurer</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="webauthnauthenticationprovider"><a class="anchor" href="#webauthnauthenticationprovider"></a>3.3.2. WebAuthnAuthenticationProvider</h4>
+<div class="paragraph">
+<p><code>WebAuthnAuthenticationProvider</code> is an <code>AuthenticationProvider</code> implementation to process a <code>WebAuthnAssertionAuthenticationToken</code>.
+For WebAuthn assertion verification, <code>WebAuthnManager</code> is used. See <a href="https://webauthn4j.github.io/webauthn4j/en/">WebAuthn4J reference</a> for more details of <code>WebAuthnManager</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="attestation-options-endpoint-assertion-options-endpoint"><a class="anchor" href="#attestation-options-endpoint-assertion-options-endpoint"></a>3.3.3. Attestation options endpoint, Assertion options endpoint</h4>
+<div class="paragraph">
+<p>WebAuthn4J Spring Security provides <code>AttestationOptionsEndpointFilter</code> for WebAuthn JS Credential Creation API parameters serving, and <code>AssertionOptionsEndpointFilter</code> for WebAuthn JS Credential Get API parameter serving.
+As these Parameters generation are delegated through <code>AttestationOptionsProvider</code> and <code>AssertionOptionsProvider</code> interfaces, they can be customized by implementing these interfaces.</p>
+</div>
+<div class="paragraph">
+<p>These can be customized through Java Config. Method chains from <code>WebAuthnLoginConfigurer&#8217;s `attestationOptionsEndpoint</code> method or <code>assertionOptionsEndpoint</code> method are configuration point for that.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+       @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+            http.apply(WebAuthnLoginConfigurer.webAuthnLogin())
+                    .attestationOptionsEndpoint()
+                        .attestationOptionsProvider(attestationOptionsProvider)
+                        .processingUrl("/webauthn/attestation/options")
+                        .rp()
+                            .id("example.com")
+                            .icon("dummy")
+                            .name("example")
+                            .and()
+                        .pubKeyCredParams(
+                                new PublicKeyCredentialParameters(PublicKeyCredentialType.PUBLIC_KEY, COSEAlgorithmIdentifier.ES256),
+                                new PublicKeyCredentialParameters(PublicKeyCredentialType.PUBLIC_KEY, COSEAlgorithmIdentifier.RS1)
+                        )
+                        .timeout(10000L)
+                        .authenticatorSelection()
+                            .authenticatorAttachment(AuthenticatorAttachment.CROSS_PLATFORM)
+                            .residentKey(ResidentKeyRequirement.PREFERRED)
+                            .userVerification(UserVerificationRequirement.PREFERRED)
+                            .and()
+                        .attestation(AttestationConveyancePreference.DIRECT)
+                        .extensions()
+                            .credProps(true)
+                            .uvm(true)
+                            .entry("unknown", true)
+                            .extensionProviders((builder, httpServletRequest) -&gt; builder.set("extensionProvider", httpServletRequest.getRequestURI()))
+                        .and()
+                    .assertionOptionsEndpoint()
+                        .assertionOptionsProvider(assertionOptionsProvider)
+                        .processingUrl("/webauthn/assertion/options")
+                        .rpId("example.com")
+                        .timeout(20000L)
+                        .userVerification(UserVerificationRequirement.PREFERRED)
+                        .extensions()
+                            .appid("appid")
+                            .appidExclude("appidExclude")
+                            .uvm(true)
+                            .entry("unknown", true)
+                            .extensionProviders((builder, httpServletRequest) -&gt; {
+                                builder.set("extensionProvider", httpServletRequest.getRequestURI());
+                            })
+                        .and()
+                    .and();
+        }
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="dynamic-generation-of-publickeycredentialuserentity"><a class="anchor" href="#dynamic-generation-of-publickeycredentialuserentity"></a>Dynamic generation of PublicKeyCredentialUserEntity</h5>
+<div class="paragraph">
+<p>Attestation options endpoint can generate <code>PublicKeyCredentialUserEntity</code> to be returned dynamically based on the <code>Authentication</code> object associated with login user.
+To generate <code>PublicKeyCredentialUserEntity</code>, <code>PublicKeyCredentialUserEntityProvider</code> is provided.</p>
+</div>
+<div class="paragraph">
+<p>Speaking of Java Config, it can be set in this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+       @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+            http.apply(WebAuthnLoginConfigurer.webAuthnLogin())
+                    .attestationOptionsEndpoint()
+                        .attestationOptionsProvider(attestationOptionsProvider)
+                        .processingUrl("/webauthn/attestation/options")
+                        .user(new MyPublicKeyCredentialUserEntityProvider()) // put your PublicKeyCredentialUserEntityProvider implementation
+        }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <code>PublicKeyCredentialUserEntityProvider</code> is not set explicitly, WebAuthn4J Spring Security Java Config look up it from Spring Application Context.
+Registering its bean to the application context is another way to set it.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="selecting-authentication-method"><a class="anchor" href="#selecting-authentication-method"></a>3.3.4. Selecting authentication method</h4>
 <div class="paragraph">
 <p>WebAuthn4J Spring Security supports "Password-less multi-factor authentication with a user-verifying authenticator", "Multi-factor authentication with password and authenticator" and "Single-factor authentication like password".
 If you put value on adoption, you may allow password authentication in your web system, or if you give greater importance to security, you may restrict password authentication.</p>
 </div>
 <div class="sect4">
-<h5 id="webauthnauthenticationprovider"><a class="anchor" href="#webauthnauthenticationprovider"></a>WebAuthnAuthenticationProvider</h5>
-<div class="paragraph">
-<p><code>WebAuthnAuthenticationProvider</code> is an <code>AuthenticationProvider</code> implementation to process a
-<code>WebAuthnAssertionAuthenticationToken</code>.
-For WebAuthn assertion verification, <code>WebAuthnAuthenticationContextValidator</code> is used.
-See <a href="https://webauthn4j.github.io/webauthn4j/ja/">WebAuthn4J reference</a> for more details of
-<code>WebAuthnAuthenticationContextValidator</code>.</p>
-</div>
-</div>
-<div class="sect4">
 <h5 id="how-to-realize-password-authentication"><a class="anchor" href="#how-to-realize-password-authentication"></a>How to realize password authentication</h5>
-<div class="paragraph">
-<p>Restriction of single-factor authentication like password can be configured per user basis.
-<code>MFAUserDetails</code> interface, which is a base interface of <code>WebAuthnUserDetails</code> has <code>isSingleFactorAuthenticationAllowed</code>
-method.
-If an implementing class returns <code>true</code> by the method, the user can pass the authentication with only a single-factor like password.</p>
-</div>
 <div class="paragraph">
 <p>To realize "Multi-factor authentication with password and authenticator" and "Single-factor authentication like password", configure not only <code>WebAuthnAuthenticationProvider</code> but also <code>DaoAuthenticationProvider</code> to process <code>UsernamePasswordAuthenticationToken</code>.
 "Multi-factor authentication with password and authenticator" can be realized by including additional authorization requirement to check a user is authenticated by WebAuthn.</p>
@@ -729,12 +876,11 @@ Register a bean of WebAuthnSecurityExpression instance and call it from JavaConf
 </div>
 </div>
 <div class="sect2">
-<h3 id="advanced-topics"><a class="anchor" href="#advanced-topics"></a>2.3. Advanced topics</h3>
+<h3 id="advanced-topics"><a class="anchor" href="#advanced-topics"></a>3.4. Advanced topics</h3>
 <div class="sect3">
-<h4 id="distinction-of-a-user-in-the-middle-of-multi-factor-authentication"><a class="anchor" href="#distinction-of-a-user-in-the-middle-of-multi-factor-authentication"></a>2.3.1. Distinction of a user in the middle of multi-factor authentication</h4>
+<h4 id="distinction-of-a-user-in-the-middle-of-multi-factor-authentication"><a class="anchor" href="#distinction-of-a-user-in-the-middle-of-multi-factor-authentication"></a>3.4.1. Distinction of a user in the middle of multi-factor authentication</h4>
 <div class="paragraph">
-<p>In the case where it is needed to show a different login view like one asks an authenticator for the user whose first factor is verified but second factor is not provided yet.
-One way is to switch the view depending on whether the current <code>Authentication</code> instance is anonymous or not.</p>
+<p>In the case where it is needed to show a different view based on authentication level, one way is to switch the view based on the type of the current <code>Authentication</code> instance.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -751,20 +897,21 @@ public String login() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="configuring-a-credential-scope-rpid"><a class="anchor" href="#configuring-a-credential-scope-rpid"></a>2.3.2. Configuring a credential scope (rpId)</h4>
+<h4 id="configuring-a-credential-scope-rpid"><a class="anchor" href="#configuring-a-credential-scope-rpid"></a>3.4.2. Configuring a credential scope (rpId)</h4>
 <div class="paragraph">
-<p>In Web Authentication specification, the scope of a creating credential can be configured through the parameter named "rpId" while creating the credential i.e. registering authenticator. "rpId" accepts
-<a href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin-effective-domain">effective domain</a>.
+<p>In Web Authentication specification, the scope of a creating credential can be configured through the parameter named "rpId" while creating the credential i.e. registering authenticator.
+"rpId" accepts <a href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin-effective-domain">effective domain</a>.
 For example, in the case where the domain of the site is <code>webauthn.example.com</code>, and <code>webauthn.example.com</code> is set to
 <code>rpId</code>, the credential is only available in <code>webauthn.example.com</code> and its sub-domain, but if <code>example.com</code>
 is set to <code>rpId</code>, the scope of the credential is relaxed to <code>example.com</code> and its sub-domain.</p>
 </div>
 <div class="paragraph">
-<p>WebAuthn4J Spring Security supports <code>rpId</code> configuration through the <code>rpId</code> property of <code>ServerPropertyProviderImpl</code>, which can be configured through <code>WebAuthnConfigurer</code> in JavaConfig.</p>
+<p>WebAuthn4J Spring Security supports <code>rpId</code> configuration through the <code>rpId</code> property of <code>ServerPropertyProviderImpl</code>, which can be configured through <code>WebAuthnConfigurer</code> in JavaConfig.
+If you would like to change <code>rpId</code> dynamically based on request, set <code>RpIdProvider</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="attestation-statement-verification"><a class="anchor" href="#attestation-statement-verification"></a>2.3.3. Attestation statement verification</h4>
+<h4 id="attestation-statement-verification"><a class="anchor" href="#attestation-statement-verification"></a>3.4.3. Attestation statement verification</h4>
 <div class="paragraph">
 <p>Web Authentication specification allows the relying party to retrieve an attestation statement from an authenticator if it is requested while authenticator registration.
 By verifying attestation statement, the relying party can exclude authenticators not conforming its security requirements.
@@ -773,7 +920,7 @@ It is also to be noted that the browsers shows an additional dialog to confirm t
 Except for enterprise applications that require strict verification of authenticators, most sites should not request attestation statements.</p>
 </div>
 <div class="paragraph">
-<p><code>WebAuthnRegistrationContextValidator</code> from WebAuthn4J validates an authenticator registration request, and it delegates attestation statement signature and trustworthiness validation to <code>AttestationStatementValidator</code> and
+<p><code>WebAuthnRegistrationContextValidator</code> from WebAuthn4J validates an authenticator registration request, and it delegates attestation statement signature and trustworthiness validation to <code>WebAuthnManager</code> and
 <code>CertPathTrustworthinessValidator</code> interface implementation respectively.</p>
 </div>
 <div class="paragraph">
@@ -783,27 +930,35 @@ Except for enterprise applications that require strict verification of authentic
 </div>
 </div>
 <div class="sect3">
-<h4 id="trustanchorprovider-using-spring-resource"><a class="anchor" href="#trustanchorprovider-using-spring-resource"></a>2.3.4. TrustAnchorProvider using Spring Resource</h4>
+<h4 id="trustanchorprovider-using-spring-resource"><a class="anchor" href="#trustanchorprovider-using-spring-resource"></a>3.4.4. TrustAnchorProvider using Spring Resource</h4>
 <div class="paragraph">
 <p>While validating an authenticator attestation certificate path on registration,
 <code>TrustAnchorCertPathTrustworthinessValidator</code> class uses <code>TrustAnchor</code> retrieved through <code>TrustAnchorProvider</code> interface implementation.
 WebAuthn4J Spring Security offers <code>KeyStoreResourceTrustAnchorProvider</code> class, which retrieves a
-<code>TrustAnchor</code> from a Java Key Store file loaded as Spring <code>Resource</code>.
-== Spring Boot</p>
+<code>TrustAnchor</code> from a Java Key Store file loaded as Spring <code>Resource</code>.</p>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spring-boot"><a class="anchor" href="#spring-boot"></a>4. Spring Boot</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Spring Boot Auto-Configuration for WebAuthn4J Spring Security is planned to be provided in the future version.
-== Sample application</p>
+<p>Spring Boot Auto-Configuration for WebAuthn4J Spring Security is planned to be provided in the future version.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sample-application"><a class="anchor" href="#sample-application"></a>5. Sample application</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>WebAuthn4J Spring Security contains a sample application demonstrates its major functionality.
 Sample SPA is a demo of Single Page Application. Sample MPA is a demo of traditional Multi Page Application.
 Sample SPA is explained below.</p>
 </div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="sample-application-execution"><a class="anchor" href="#sample-application-execution"></a>2.4. Sample application execution</h3>
+<h3 id="sample-application-execution"><a class="anchor" href="#sample-application-execution"></a>5.1. Sample application execution</h3>
 <div class="paragraph">
 <p>Sample application can be executed by following command.</p>
 </div>
@@ -814,7 +969,7 @@ Sample SPA is explained below.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-and-authenticator-registration"><a class="anchor" href="#user-and-authenticator-registration"></a>2.5. User and authenticator registration</h3>
+<h3 id="user-and-authenticator-registration"><a class="anchor" href="#user-and-authenticator-registration"></a>5.2. User and authenticator registration</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/signup.png" alt="signup view">
@@ -826,7 +981,7 @@ Please fill user information and register user and authentication device.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/signup-with-firefox-popup.png" alt="authenticator request popup">
+<img src="images/signup-with-popup.png" alt="authenticator request popup">
 </div>
 </div>
 <div class="paragraph">
@@ -836,7 +991,7 @@ If you would like to allow single-factor authentication, Please check "Allow pas
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-authentication"><a class="anchor" href="#user-authentication"></a>2.6. User authentication</h3>
+<h3 id="user-authentication"><a class="anchor" href="#user-authentication"></a>5.3. User authentication</h3>
 <div class="paragraph">
 <p>Login page can be accessed with <code><a href="http://localhost:/8080/login" class="bare">http://localhost:/8080/login</a></code>.
 Sample application supports three authentication flow.</p>
@@ -858,7 +1013,7 @@ Sample application supports three authentication flow.</p>
 <p>Each of three authentication flows are explained below.</p>
 </div>
 <div class="sect3">
-<h4 id="multi-factor-authentication-with-password-and-authenticator"><a class="anchor" href="#multi-factor-authentication-with-password-and-authenticator"></a>2.6.1. Multi-factor authentication with password and authenticator</h4>
+<h4 id="multi-factor-authentication-with-password-and-authenticator"><a class="anchor" href="#multi-factor-authentication-with-password-and-authenticator"></a>5.3.1. Multi-factor authentication with password and authenticator</h4>
 <div class="paragraph">
 <p>If you register a non user-verifying authenticator like FIDO-U2F token, you can login with multi-factor authentication with password and authenticator.</p>
 </div>
@@ -882,13 +1037,13 @@ You will be automatically redirected to the dashboard.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="password-less-multi-factor-authentication-with-a-user-verifying-authenticator"><a class="anchor" href="#password-less-multi-factor-authentication-with-a-user-verifying-authenticator"></a>2.6.2. Password-less multi-factor authentication with a user-verifying authenticator</h4>
+<h4 id="password-less-multi-factor-authentication-with-a-user-verifying-authenticator"><a class="anchor" href="#password-less-multi-factor-authentication-with-a-user-verifying-authenticator"></a>5.3.2. Password-less multi-factor authentication with a user-verifying authenticator</h4>
 <div class="paragraph">
 <p>If you register a user-verifying authenticator like that supports FIDO-CTAP2, you can login without password.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/login-with-edge.png" alt="login view (password-less login)">
+<img src="images/login-with-popup.png" alt="login view (password-less login)">
 </div>
 </div>
 <div class="paragraph">
@@ -898,7 +1053,7 @@ You will be automatically redirected to the dashboard.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="password-authentication"><a class="anchor" href="#password-authentication"></a>2.6.3. Password authentication</h4>
+<h4 id="password-authentication"><a class="anchor" href="#password-authentication"></a>5.3.3. Password authentication</h4>
 <div class="paragraph">
 <p>If you checked "Allow password authentication" at user registration, standard password authentication is available.</p>
 </div>
@@ -919,7 +1074,7 @@ If the authentication succeeds, you will be automatically redirected to the dash
 <div id="footer">
 <div id="footer-text">
 Version 0.7.0-SNAPSHOT<br>
-Last updated 2020-08-15 04:30:27 UTC
+Last updated 2020-08-16 04:23:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
