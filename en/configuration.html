@@ -463,10 +463,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;properties&gt;
+  ...
+  &lt;!-- Use the latest version whenever possible. --&gt;
+  &lt;webauthn4j-spring-security.version&gt;0.7.0.RELEASE&lt;/webauthn4j-spring-security.version&gt;
+  ...
+&lt;/properties&gt;
+
+&lt;dependency&gt;
 	&lt;groupId&gt;com.webauthn4j&lt;/groupId&gt;
 	&lt;artifactId&gt;webauthn4j-spring-security-core&lt;/artifactId&gt;
-	&lt;version&gt;${version}&lt;/version&gt;
+	&lt;version&gt;${webauthn4j-spring-security.version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -791,7 +798,7 @@ WebAuthn4J Spring Security offers <code>KeyStoreResourceTrustAnchorProvider</cod
 <div id="footer">
 <div id="footer-text">
 Version 0.7.0-SNAPSHOT<br>
-Last updated 2020-08-29 07:39:29 UTC
+Last updated 2020-08-29 09:40:09 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
